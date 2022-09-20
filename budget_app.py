@@ -1,4 +1,7 @@
 
+from unicodedata import category
+
+
 class Category:
 
     def __init__(self, name):
@@ -57,6 +60,37 @@ class Category:
         else :
             return False
 
+def create_spend_chart(category_list):
+
+    total_spent_category = []
+    dict_list = []
+
+    for category in category_list:
+
+        total_withdraws = 0
+
+        for item in category.ledger:
+            if item['amount'] < 0:
+                total_withdraws= total_withdraws + item['amount']
+        
+        total_spent = {f"{category.name}":f"{total_withdraws}"}
+        total_spent_category.append(total_spent)
+
+    # print(total_spent_category)
+
+    percentage_list = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    chart = "Percentage spent by category" 
+    for percent in percentage_list:
+        chart = chart+ f"\n{percent}"
+    chart = chart+"\n---------"
+
+    # print(chart)
+
+    for item in total_spent_category:
+        dict_list.append(*item.items()) ## appending the result inside the list
+
+    print(dict_list)
+
 if __name__ == "__main__":
 
     x = Category("Food")
@@ -66,8 +100,12 @@ if __name__ == "__main__":
     
     x.transfer(y, 100)
 
+    x.withdraw(200, "Party")
+
     print(x)
     print('')
     print(y)
+    print('')
 
+    create_spend_chart([x, y])
     
