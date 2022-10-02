@@ -8,6 +8,7 @@ pandas = "*"
 requests = "*"
 seaborn = "*"
 matplotlib = "*"
+pyqt5 = "*"
 
 [dev-packages]
 
