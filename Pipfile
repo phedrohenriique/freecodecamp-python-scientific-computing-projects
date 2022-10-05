@@ -9,6 +9,8 @@ requests = "*"
 seaborn = "*"
 matplotlib = "*"
 pyqt5 = "*"
+notebook = "*"
+jupyterthemes = "*"
 
 [dev-packages]
 
