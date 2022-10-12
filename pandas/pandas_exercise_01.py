@@ -19,6 +19,19 @@ def data_manipulation():
 
     df_series = pd.Series([1,2,3,4,5], index=['a','b','c','d','e'])
 
+    df_data_01 = pd.DataFrame(
+        {
+            'fruits':['banana','apple','orange','watermelon','berry'],
+            'price':[10,15,15,20,50]
+        }
+    )
+    df_data_02 = pd.DataFrame(
+        {
+            'fruits':['banana','apple','orange','watermelon','berry'],
+            'calories':[50,300,200,550,400]
+        }
+    )
+
     df_winelist = pd.read_csv(winelist_filepath)
     pd.set_option("display.max_rows", 10)
     
@@ -56,7 +69,17 @@ def data_manipulation():
     ## print(df_winelist.apply(change, axis='columns').head(10)) ## axis='columns' change the rows
     ## print(mapped_second)
     ## print(df_winelist['variety'].head(5) +""+ df_winelist['winery'].head(5))
-    print(df_winelist.groupby('country')['price'].mean()) ## group by a column and defines how much of the other they have
+    ## print(df_winelist.groupby('country')['price'].mean()) ## group by a column and defines how much of the other they have
+    ## print(df_winelist.groupby('country')['price', 'points'].agg(['min','mean','max']).reset_index()) ## apply recieves a lambda function as well using the df parameter
+    ## print(df_winelist.loc[df_winelist['points'],['country','points','price']].reset_index().sort_values(by='points', ascending=False))
+    ## print(df_winelist.groupby('country')['price'].agg(lambda df : df))
+    ## print(df_winelist['points'].astype('float64').dtype) ## transforming datatype
+    ## print(df_winelist[pd.isnull(df_winelist['country'])].fillna("Not Informed"))
+    ## print(df_winelist['points'].replace(87,500))
+    ## print(df_winelist.rename(columns={'country' : 'país'})['país'])
+    ## print(df_winelist.rename(index={0:'Good Wine'}))
+    ## print(pd.concat([df_data_01, df_data_02]))
+    ## print(df_data_01.join(df_data_02, lsuffix='_price', rsuffix='_calories').drop('fruits_calories', axis='columns').set_index('fruits_price')) ## axis to tell its a column, drop to delete double columns and set_index to change the rows names
 
 if __name__ == "__main__":
     ## print('started')
